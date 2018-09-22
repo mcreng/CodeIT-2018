@@ -5,16 +5,18 @@ import fs from "fs";
 import request from "request";
 var router = Router();
 
-var download = async function(uri, filename, callback) {
+var download = async (uri, filename, callback) => new Promise((resolve,reject)=>{
   request.head(uri, async function(err, res, body) {
     request(uri)
       .pipe(fs.createWriteStream(filename))
-      .on("close", callback);
-  });
-};
+      .on("close", ()=>{
+        callback()
+        resolve()
+      });
+  })
+});
 
-router.post("/", async function(req, res, next) {
-  var input = req.body;
+var downloadAll = async function(input){
   var output = [];
 
   for (var i = 0; i < input.length; i++) {
@@ -33,8 +35,28 @@ router.post("/", async function(req, res, next) {
         })
     );
   }
+  console.log('gg')
+  return output
+}
+
+const asyncMiddleware = fn =>
+  (req, res, next) => {
+    Promise.resolve(fn(req, res, next))
+      .catch(next);
+  };
+
+router.post("/", asyncMiddleware(async function(req, res, next) {
+  var input = req.body;
+  var output = []
+  try{
+    output = await downloadAll(input)
+  }catch(e){
+    console.log(e)
+  }
+
+  console.log('hi')
 
   res.send(output);
-});
+}));
 
 export default router;
