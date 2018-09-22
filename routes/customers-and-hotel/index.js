@@ -7,7 +7,8 @@ var router = Router();
 router.post("/minimum-camps", function(req, res, next) {
   // console.log()
   const formData = req.body;
-
+  console.log(formData)
+  
   var options = {
     mode: "text",
     pythonPath: "python",
@@ -26,13 +27,14 @@ router.post("/minimum-camps", function(req, res, next) {
 router.post("/minimum-distance", function(req, res, next) {
   // console.log()
   const formData = req.body;
-
+  console.log(formData)
+  
   var options = {
     mode: "text",
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [JSON.stringify(formData)]
+    args: [formData]
   }; // get print results in real-time
 
   PythonShell.run("minimum-distance.py", options, function(err, results) {

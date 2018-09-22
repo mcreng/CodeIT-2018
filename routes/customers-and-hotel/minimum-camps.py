@@ -1,9 +1,11 @@
 import sys
 import json
 
-n = json.loads(sys.argv[1])
+n = sys.argv[1]
 
 #input = [4, 7, 5, 1, 12, 13, 9, 2, 6, 3, 21]
+
+print(n)
 
 n.sort()
 
