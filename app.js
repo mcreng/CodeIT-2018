@@ -11,7 +11,7 @@ var ml_q1 = require("./routes/machine-learning/question-1").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
-var broadcaster = require('./routes/broadcaster/index')
+const {minBroadcast, findMostConnected, findShortestPath} = require('./routes/broadcaster/functions')
 
 var app = express();
 
@@ -30,8 +30,26 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/', index);
 app.use('/square', square)
-app.use('/broadcaster',broadcaster)
+// app.use('/broadcaster',broadcaster)
 app.use("/machine-learning/question-1", ml_q1);
+
+
+app.post("/broadcaster/message-broadcast", function(req, res, next) {
+  const formData = req.body
+  console.log('hi',formData)
+  res.send({result:minBroadcast(formData)})
+});
+app.post("/broadcaster/most-connected-node", function(req, res, next) {
+  // console.log()
+  const formData = req.body
+  res.send({result:findMostConnected(formData)})
+});
+app.post("/broadcaster/fastest-path", function(req, res, next) {
+  // console.log()
+  const formData = req.body
+  res.send({result:findShortestPath(formData)})
+});
+
 
 
 // catch 404 and forward to error handler`

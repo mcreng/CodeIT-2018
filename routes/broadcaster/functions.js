@@ -5,7 +5,7 @@ let parents = {}
 let nodes = {}
 let ancesters = {}
 
-const minBroadcast = data => {
+const minBroadcast = ({data}) => {
   initNodes(data)
   // console.log({children,parents,nodes})
   generateAncesterList()
@@ -17,7 +17,7 @@ const minBroadcast = data => {
   return sendList
 }
 
-const findMostConnected = data => {
+const findMostConnected = ({data}) => {
   initNodes(data)
   // console.log({children,parents,nodes})
   generateAncesterList()
@@ -98,7 +98,7 @@ const findAncester = (node) => {
 }
 
 const reduceAncesterList = () => {
-  for(node in nodes){
+  for(let node in nodes){
     ancesters[node] = ancesters[node].reduce((prev, currv)=>(prev.indexOf(currv)===-1?[...prev,currv]:prev),[])
   }
 }
@@ -107,7 +107,7 @@ const broadcastOut = () => {
   //mark the frequency of nodes
   const marks = gradeNodes()
   const sendList = []
-  
+  let notSentNodes
   while(notSentNodes = Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>marks[a]<marks[b])){
     if(notSentNodes.length === 0)break
     // console.log('push',notSentNodes[0])
