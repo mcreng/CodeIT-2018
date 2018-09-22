@@ -27,6 +27,9 @@ router.post("/", async function(req, res, next) {
     // Compare the 2 dates
     if (keyA < keyB) return -1;
     if (keyA > keyB) return 1;
+    if (a["PlaneId"] < b["PlaneId"]) return -1;
+    if (a["PlaneId"] > b["PlaneId"]) return 1;
+
     return 0;
   });
 
