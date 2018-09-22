@@ -24,6 +24,7 @@ function loop() {
 }
 
 router.post("/", function(req, res, next) {
+  data = {};
   console.log(req.body);
   n = req.body["number_of_types_of_food"];
   A = req.body["calories_for_each_type_for_raphael"];
