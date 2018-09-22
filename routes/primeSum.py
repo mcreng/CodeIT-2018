@@ -14,10 +14,14 @@ elif n%2:
         if (prime[i] and prime[j]): 
             for k in range(2,i*2):
                 if (prime[k] and prime[i*2-k] and k != (i*2-k) and k != j and (i*2-k) != j and (i*2-k) > 1):
-                    print(j, k,(i*2-k))
+                    print(j)
+                    print(k)
+                    print(i*2-k)
                     exit(0)
 else:
     for i in range(2, n):
         if (prime[i] and prime[n-i] and i != (n-i)):
-            print(i,(n-i))
+            print(i)
+            print(n-i)
             break
+sys.stdout.flush()

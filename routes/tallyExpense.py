@@ -52,3 +52,4 @@ for i in range(n_total):
         out_trans['transactions'].append(tmp_tran)
 
 print(json.dumps(out_trans))
+sys.stdout.flush()
