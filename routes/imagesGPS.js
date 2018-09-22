@@ -16,9 +16,7 @@ var download = async (uri, filename, callback) =>
   });
 
 var toDecimal = function(number) {
-  return (
-    number[0] + number[1] / (60 * number[1]) + number[2] / (3600 * number[2])
-  );
+  return number[0] + number[1] / 60 + number[2] / 3600;
 };
 
 var ExifImage = require("exif").ExifImage;
@@ -40,8 +38,8 @@ var downloadAll = async function(input) {
     if (error) console.log("Error: " + error.message);
     else {
       // console.log(exifData.gps); // Do something with your data!
-      // console.log(exifData.gps.GPSLatitude);
-      // console.log(exifData.gps.GPSLongitude);
+      console.log(exifData.gps.GPSLatitude);
+      console.log(exifData.gps.GPSLongitude);
       var lat = toDecimal(exifData.gps.GPSLatitude); //gps["GPSLatitude"][0];
       var lon = toDecimal(exifData.gps.GPSLongitude); //gps["GPSLongitude"][0];
       // var lat_ = EXIF.getTag(data,'GPSLatitude')
