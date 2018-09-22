@@ -1,16 +1,16 @@
 import sys
 import json
 
-input = json.loads(sys.argv[1])
+n = json.loads(sys.argv[1])
 
 #input = [4, 7, 5, 1, 12, 13, 9, 2, 6, 3, 21]
 
-input.sort()
+n.sort()
 
-min = max(input)
-for i in range(0,len(input)-1):
-    if (input[i+1] - input[i]) < min: 
-        min = (input[i+1] - input[i])
+min = max(n)
+for i in range(0,len(n)-1):
+    if (n[i+1] - n[i]) < min: 
+        min = (n[i+1] - n[i])
 
 print(min)
 sys.stdout.flush()
