@@ -41,20 +41,30 @@ router.post("/", async function(req, res, next) {
     runway_status[0] = addTime(flights[0]["Time"], statics["ReserveTime"]);
 
     for (var i = 1; i < flights.length; i++) {
-      var j = 0;
+      var j = 0,
+        found = false;
 
-      var s = runway_status.sort(function(a, b) {
-        var keyA = a["Time"];
-        var keyB = b["Time"];
-        // Compare the 2 dates
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      });
-      var min_s = Math.min(...s);
-      min_s = min_s.toString();
-      min_s = "0".repeat(4 - min_s.length).concat(min_s);
-      j = s.indexOf(min_s);
+      for (; j < runway_status.length; j++) {
+        if (getTimeDiff(runway_status[j], flights[i]["Time"]) > 0) {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        var s = runway_status.sort(function(a, b) {
+          var keyA = a["Time"];
+          var keyB = b["Time"];
+          // Compare the 2 dates
+          if (keyA < keyB) return -1;
+          if (keyA > keyB) return 1;
+          return 0;
+        });
+        var min_s = Math.min(...s);
+        min_s = min_s.toString();
+        min_s = "0".repeat(4 - min_s.length).concat(min_s);
+        j = s.indexOf(min_s);
+      }
       console.log(j);
 
       flights[i]["Runway"] = runways[j];
