@@ -32,7 +32,7 @@ router.post("/minimum-distance", function(req, res, next) {
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [JSON.stringify(formData)]
+    args: [formData]
   }; // get print results in real-time
 
   PythonShell.run("minimum-distance.py", options, function(err, results) {
