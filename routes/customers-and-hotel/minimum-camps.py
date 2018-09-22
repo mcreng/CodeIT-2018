@@ -6,8 +6,7 @@ n = json.loads(sys.argv[1])
 # input = [{"pos":4,"distance":3},{"pos":7, "distance":1}, { "pos":5,"distance":1}, { "pos":1, "distance":1}]
 ranges = []
 for i in n:
-    #ranges.append((i["pos"]-i["distance"], i["pos"]+i["distance"]))
-    pass
+    ranges.append((i["pos"]-i["distance"], i["pos"]+i["distance"]))
     
 ranges.sort(key=lambda p:p[1])
 
