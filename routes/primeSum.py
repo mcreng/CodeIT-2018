@@ -1,8 +1,8 @@
 import sys
-n = int(sys.argv[1])
+n = int(sys.argv[0])
 
 prime = [True for i in range(n+1)]
-for p in range(2, int(round(n**0.5))):
+for p in range(2, int(round(n**0.5))+1):
     if (prime[p] == True):
         for i in range(p * 2, n+1, p):
             prime[i] = False
