@@ -4,6 +4,7 @@ import axios from "axios";
 var router = Router();
 
 router.post("/", function(req, res, next) {
+  console.log(req.body);
   var input = req.body["input"];
 
   var options = {
