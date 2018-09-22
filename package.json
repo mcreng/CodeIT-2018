@@ -17,6 +17,7 @@
     "express": "^4.16.3",
     "firebase": "^5.5.1",
     "jade": "~1.11.0",
+    "js-priority-queue": "^0.1.5",
     "morgan": "^1.9.1",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
