@@ -52,23 +52,26 @@ app.use("/customers-and-hotel/index", cus_and_hotel);
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
+  console.log('bc t1',formData)
   const result = minBroadcast(formData);
-  res.send({ result });
   console.log("bc t1", { formData, result });
+  res.send({ result });
 });
 app.post("/broadcaster/most-connected-node", function(req, res, next) {
   // console.log()
   const formData = req.body;
+  console.log('bc t2', formData)
   const result = findMostConnected(formData);
-  res.send({ result });
   console.log("bc t2", { formData, result });
+  res.send({ result });
 });
 app.post("/broadcaster/fastest-path", function(req, res, next) {
   // console.log()
   const formData = req.body;
+  console.log('bc t3', formData)
   const result = findShortestPath(formData);
-  res.send({ result });
   console.log("bc t3", { formData, result });
+  res.send({ result });
 });
 
 app.post("/sorting-game", (req, res, next) => {
@@ -79,6 +82,7 @@ app.post("/sorting-game", (req, res, next) => {
 
 app.post("/skill-tree", (req, res, next) => {
   const formData = req.body;
+  console.log('skill-tree',formData)
   const result = skilltree(formData);
   console.log("skill tree", { formData, result });
   res.send(result);
