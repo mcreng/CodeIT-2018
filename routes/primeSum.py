@@ -1,5 +1,5 @@
 import sys
-n = int(sys.argv[1])
+n = int(sys.argv[0])
 
 prime = [True for i in range(n+1)]
 for p in range(2, int(round(n**0.5))):
