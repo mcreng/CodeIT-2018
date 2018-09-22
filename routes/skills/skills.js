@@ -43,7 +43,7 @@ const semiBestBfs = () => {
 
 const dfs = (trace, offense, points) => {
   if (offense >= target) {
-    console.log({trace,offense,points});
+    // console.log({trace,offense,points});
     if(bestPath){
       if(bestPath.points > points){
         bestPath = {path:trace,offense,points}
@@ -99,13 +99,13 @@ const solve = data => {
 
 const initNodes = skills => {
   skills.forEach(registerNode);
-  console.log(children)
+  // console.log(children)
   skills.forEach(skill => {
     const { name } = skill;
     nodes[name] = skill;
     if (skill.require) {
       parents[name].push(skill.require);
-      console.log(children[skill.require],skill.require)
+      // console.log(children[skill.require],skill.require)
       children[skill.require].push(name);
     } else {
       parents[name].push('__beep')

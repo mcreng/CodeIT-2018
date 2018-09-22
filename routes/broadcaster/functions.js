@@ -21,17 +21,18 @@ const findMostConnected = ({data}) => {
   initNodes(data)
   // console.log({children,parents,nodes})
   generateAncesterList()
-  console.log(ancesters)
+  // console.log(ancesters)
   reduceAncesterList()
   // console.log(ancesters)
   let mostConnected = mostConnectedOut()
-  console.log(mostConnected)
+  // console.log(mostConnected)
   return mostConnected
 }
 
 const findShortestPath = ({data,sender,recipient}) => {
-  const relations = data.map(str=>({nodes:str.replace(/,.*/g,'').split('->'),weight:Number(str.match(/,\d*/)[0].match(/\d/)[0])}))
+  const relations = data.map(str=>({nodes:str.replace(/,.*/g,'').split('->'),weight:Number(str.match(/,\d+/)[0].match(/\d+/)[0])}))
   const map = {}
+  // console.log(relations)
   relations.forEach(relation=>{
     const {nodes:[p,c],weight} = relation
     if(! (p in map)){
@@ -41,7 +42,7 @@ const findShortestPath = ({data,sender,recipient}) => {
   })
   const graph = new Graph(map)
   const path = graph.findShortestPath([sender,recipient])
-  console.log(path)
+  // console.log(path)
   return path
 }
 
@@ -108,7 +109,7 @@ const broadcastOut = () => {
   const marks = gradeNodes()
   const sendList = []
   let notSentNodes
-  console.log(marks)
+  // console.log(marks)
   // console.log(Object.keys(nodes).filter(node=>(nodes[node])))
   // console.log(Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{console.log(a,marks[a]); return marks[b] - marks[a]}))
   while(notSentNodes = Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{return marks[b] - marks[a]})){
@@ -141,7 +142,7 @@ const sendNode = (node)=> {
 
 const mostConnectedOut = () => {
   const marks = gradeNodes()
-  console.log(marks)
+  // console.log(marks)
   return Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{return marks[b] - marks[a]})[0]
 }
 
