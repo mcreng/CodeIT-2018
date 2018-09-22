@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 var square = require("./routes/square").default;
 var ml_q1 = require("./routes/machine-learning/question-1").default;
 var prime_sum = require("./routes/prime-sum").default;
+var tally_expense = require("./routes/tally-expense").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", index);
 app.use("/square", square);
 app.use("/prime-sum", prime_sum);
+app.use("/tally-expense", tally_expense);
 app.use("/machine-learning/question-1", ml_q1);
 
 
