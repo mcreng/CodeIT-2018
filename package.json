@@ -18,11 +18,8 @@
     "firebase": "^5.5.1",
     "geoexif": "^1.0.0",
     "jade": "~1.11.0",
-<<<<<<< HEAD
     "jpeg-exif": "^1.1.2",
-=======
     "js-priority-queue": "^0.1.5",
->>>>>>> 508bdfb5d6fcc716aeee61e9a71b41b688f598fe
     "morgan": "^1.9.1",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
