@@ -27,6 +27,7 @@ router.post("/", async function(req, res, next) {
     if (flights[i]["Distressed"]) {
       var obj = flights.splice(i, 1)[0];
       obj["Runway"] = statics["Runways"][0];
+      delete obj["Distressed"];
       distressed.push(obj);
     }
   }
@@ -112,6 +113,17 @@ router.post("/", async function(req, res, next) {
     }
     flights.splice(k, 0, distressed[i]);
     console.log(k);
+    // if (k != 0) {
+    //   var t = Math.max(
+    //     distressed[i]["Time"],
+    //     addTime(flights[k - 1]["Time"], statics["ReserveTime"])
+    //   );
+    //   console.log(flights[k]["Time"]);
+    //   console.log(prevTime);
+    //   t = t.toString();
+    //   t = "0".repeat(4 - t.length).concat(t);
+    //   distressed[i]["Time"] = t;
+    // }
     k++;
     for (; k < flights.length; k++) {
       if (flights[k]["Runway"] == runway) {
