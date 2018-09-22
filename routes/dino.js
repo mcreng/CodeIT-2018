@@ -16,6 +16,7 @@ function* subsets(array, offset = 0) {
 router.post("/", function(req, res, next) {
   console.log(req.body);
   var n = req.body["number_of_types_of_food"];
+  if (n >= 13) res.send(false);
   var A = req.body["calories_for_each_type_for_raphael"];
   var B = req.body["calories_for_each_type_for_leonardo"];
   var delta = req.body["maximum_difference_for_calories"];
