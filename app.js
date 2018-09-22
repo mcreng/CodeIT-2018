@@ -1,3 +1,4 @@
+
 require("babel-register");
 var express = require("express");
 var path = require("path");
@@ -11,6 +12,7 @@ var prime_sum = require("./routes/prime-sum").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
+const {minBroadcast, findMostConnected, findShortestPath} = require('./routes/broadcaster/functions')
 
 var app = express();
 
@@ -26,10 +28,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use("/", index);
 app.use("/square", square);
 app.use("/prime-sum", prime_sum);
 app.use("/machine-learning/question-1", ml_q1);
+
+
+app.post("/broadcaster/message-broadcast", function(req, res, next) {
+  const formData = req.body
+  console.log('hi',formData)
+  res.send({result:minBroadcast(formData)})
+});
+app.post("/broadcaster/most-connected-node", function(req, res, next) {
+  // console.log()
+  const formData = req.body
+  res.send({result:findMostConnected(formData)})
+});
+app.post("/broadcaster/fastest-path", function(req, res, next) {
+  // console.log()
+  const formData = req.body
+  res.send({result:findShortestPath(formData)})
+});
+
+
 
 // catch 404 and forward to error handler`
 app.use(function(req, res, next) {
