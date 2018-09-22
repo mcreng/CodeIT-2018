@@ -18,6 +18,7 @@
     "firebase": "^5.5.1",
     "geoexif": "^1.0.0",
     "jade": "~1.11.0",
+    "jpeg-exif": "^1.1.2",
     "morgan": "^1.9.1",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",

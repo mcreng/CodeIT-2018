@@ -10,6 +10,7 @@ var ml_q1 = require("./routes/machine-learning/question-1").default;
 var ml_q2 = require("./routes/machine-learning/question-2").default;
 var prime_sum = require("./routes/prime-sum").default;
 var tally_expense = require("./routes/tally-expense").default;
+var imagesGPS = require("./routes/imagesGPS").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
@@ -39,6 +40,7 @@ app.use("/prime-sum", prime_sum);
 app.use("/tally-expense", tally_expense);
 app.use("/machine-learning/question-1", ml_q1);
 app.use("/machine-learning/question-2", ml_q2);
+app.use("/imagesGPS", imagesGPS);
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
