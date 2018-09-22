@@ -16,11 +16,12 @@
     "debug": "~2.6.3",
     "express": "^4.16.3",
     "firebase": "^5.5.1",
+    "geoexif": "^1.0.0",
     "jade": "~1.11.0",
     "morgan": "^1.9.1",
-    "request": "^2.88.0",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
+    "request": "^2.88.0",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
