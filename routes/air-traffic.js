@@ -78,7 +78,7 @@ router.post("/", async function(req, res, next) {
     }
   }
 
-  res.send(flights);
+  res.send({ Flights: flights });
 });
 
 export default router;
