@@ -6,7 +6,7 @@ var router = Router();
 
 router.post("/minimum-camps", function(req, res, next) {
   // console.log()
-  const formData = req.body
+  const formData = req.body;
 
   var options = {
     mode: "text",
@@ -25,7 +25,7 @@ router.post("/minimum-camps", function(req, res, next) {
 });
 router.post("/minimum-distance", function(req, res, next) {
   // console.log()
-  const formData = req.body
+  const formData = req.body;
 
   var options = {
     mode: "text",
@@ -43,4 +43,4 @@ router.post("/minimum-distance", function(req, res, next) {
   });
 });
 
-module.exports = router
+export default router;
