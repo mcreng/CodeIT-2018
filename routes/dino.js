@@ -33,7 +33,6 @@ router.post("/", function(req, res, next) {
   amax = A.reduce((a, b) => a + b, 0) + B.reduce((a, b) => a + b, 0) + 1;
   loop();
   var counter = 0;
-  console.log(data);
   for (var i = -delta; i <= delta; i++) {
     counter += data[[n, i]];
   }
