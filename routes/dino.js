@@ -5,11 +5,7 @@ var data = {};
 var n = 0;
 var A = null;
 var B = null;
-var amax = 0;
 function loop() {
-  for (var k = -amax; k < amax; k++) {
-    data[[0, k]] = 0;
-  }
   data[[0, 0]] = 1;
 
   var new_nonzero = [0];
@@ -35,9 +31,10 @@ function loop() {
       });
     });
 
-    for (var k = -amax; k < amax; k++) {
-      delete data[[i - 1, k]];
-    }
+    Object.keys(data).forEach(key => {
+      key = JSON.parse("[" + key + "]");
+      if (key[0] == i - 1) delete data[key];
+    });
   }
 }
 
@@ -48,12 +45,15 @@ router.post("/", function(req, res, next) {
   A = req.body["calories_for_each_type_for_raphael"];
   B = req.body["calories_for_each_type_for_leonardo"];
   var delta = req.body["maximum_difference_for_calories"];
-  amax = A.reduce((a, b) => a + b, 0) + B.reduce((a, b) => a + b, 0) + 1;
   loop();
   var counter = 0;
-  for (var i = -delta; i <= delta; i++) {
-    counter += data[[n, i]] ? data[[n, i]] : 0;
-  }
+
+  Object.keys(data).forEach(k => {
+    k = JSON.parse("[" + k + "]");
+    if (Math.abs(k[1]) <= delta) {
+      counter += data[k];
+    }
+  });
 
   res.send({ result: counter });
 });
