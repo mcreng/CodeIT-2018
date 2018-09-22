@@ -22,7 +22,7 @@ const dfs = (trace, offense, points) => {
     }
     opens.forEach(c =>{
       const newTrace = [...trace]
-      if(newTrace.indexOf(c)===-1){
+      if(true||newTrace.indexOf(c)===-1){
         newTrace.push(c)
         // console.log({newTrace})
         dfs([...trace, c], offense + nodes[c].offense, points + nodes[c].points)
