@@ -4,11 +4,12 @@ import json
 n = sys.argv[1]
 
 # input = [{"pos":4,"distance":3},{"pos":7, "distance":1}, { "pos":5,"distance":1}, { "pos":1, "distance":1}]
-
+console.log(n)
 ranges = []
 for i in n:
-    ranges.append((i["pos"]-i["distance"], i["pos"]+i["distance"]))
-
+    #ranges.append((i["pos"]-i["distance"], i["pos"]+i["distance"]))
+    pass
+    
 ranges.sort(key=lambda p:p[1])
 
 cnt = 0
