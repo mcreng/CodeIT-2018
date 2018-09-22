@@ -22,20 +22,21 @@ var toDecimal = function(number) {
 };
 
 var ExifImage = require("exif").ExifImage;
-var exitLoad = async (params)=>new Promise((resolve,reject)=>{
-  new ExifImage(params,(...params)=>{
-    // console.log('exif load',params)
-    resolve(params)
-  })
-})
+var exitLoad = async params =>
+  new Promise((resolve, reject) => {
+    new ExifImage(params, (...params) => {
+      // console.log('exif load',params)
+      resolve(params);
+    });
+  });
 var downloadAll = async function(input) {
   var output = [];
 
   for (var i = 0; i < input.length; i++) {
     var file = input[i]["path"];
-    const content = await download(file, "./tmp.jpg")
-    const [error,exifData] = await exitLoad({ image: "./tmp.jpg" })
-    console.log({error,exifData})
+    const content = await download(file, "./tmp.jpg");
+    const [error, exifData] = await exitLoad({ image: "./tmp.jpg" });
+    console.log({ error, exifData });
     if (error) console.log("Error: " + error.message);
     else {
       console.log(exifData.gps); // Do something with your data!
@@ -49,7 +50,6 @@ var downloadAll = async function(input) {
       output.push({ lat: lat, long: lon });
       console.log(output);
     }
-    
   }
   console.log("gg");
   return output;

@@ -12,18 +12,19 @@ var prime_sum = require("./routes/prime-sum").default;
 var tally_expense = require("./routes/tally-expense").default;
 var imagesGPS = require("./routes/imagesGPS").default;
 var skilltree = require('./routes/skills/skills')
+var air_traffic = require("./routes/air-traffic").default;
+var cus_and_hotel = require("./routes/customers-and-hotel").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
 
-const puzzleSolver = require('./routes/sorting-game/puzzle-solver')
+const puzzleSolver = require("./routes/sorting-game/puzzle-solver");
 
 const {
   minBroadcast,
   findMostConnected,
   findShortestPath
 } = require("./routes/broadcaster/functions");
-
 
 var app = express();
 
@@ -46,6 +47,9 @@ app.use("/tally-expense", tally_expense);
 app.use("/machine-learning/question-1", ml_q1);
 app.use("/machine-learning/question-2", ml_q2);
 app.use("/imagesGPS", imagesGPS);
+app.use("/airtrafficcontroller", air_traffic);
+app.use("/customers-and-hotel/index", cus_and_hotel);
+
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
@@ -68,12 +72,11 @@ app.post("/broadcaster/fastest-path", function(req, res, next) {
   console.log("bc t3", {formData,result});
 });
 
-
-app.post('/sorting-game',(req,res,next)=>{
-  const formData = req.body
-  console.log('sorting game')
-  res.send({result:puzzleSolver(formData)})
-})
+app.post("/sorting-game", (req, res, next) => {
+  const formData = req.body;
+  console.log("sorting game");
+  res.send({ result: puzzleSolver(formData) });
+});
 
 app.post('/skill-tree',(req,res,next)=>{
   const formData = req.body
