@@ -19,7 +19,7 @@ router.post("/", function(req, res, next) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     console.log("results: %j", results);
-    res.send(results);
+    res.send(results.map(val => parseInt(val)));
   });
 });
 
