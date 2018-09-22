@@ -17,23 +17,27 @@ router.post("/", async function(req, res, next) {
   var input = req.body;
   var output = [];
 
-  for (var i = 0; i < input.length; i++) {
-    var file = input[i]["path"];
-    await download(
-      file,
-      "./tmp.jpg",
-      async () =>
-        new Promise((resolve, reject) => {
-          var data = exif.parseSync("./tmp.jpg");
-          var gps = data["GPSInfo"];
-          var lat = gps["GPSLatitude"][0];
-          var lon = gps["GPSLongitude"][0];
-          output.push({ lat: lat, long: lon });
-          console.log(output);
-        })
-    );
-  }
-
+  const For = async () =>
+    new Promise(async (resolve, reject) => {
+      for (var i = 0; i < input.length; i++) {
+        var file = input[i]["path"];
+        await download(
+          file,
+          "./tmp.jpg",
+          async () =>
+            new Promise((resolve, reject) => {
+              var data = exif.parseSync("./tmp.jpg");
+              var gps = data["GPSInfo"];
+              var lat = gps["GPSLatitude"][0];
+              var lon = gps["GPSLongitude"][0];
+              output.push({ lat: lat, long: lon });
+            })
+        );
+      }
+      resolve();
+    });
+  await For();
+  console.log(output);
   res.send(output);
 });
 

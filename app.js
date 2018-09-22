@@ -11,18 +11,18 @@ var ml_q2 = require("./routes/machine-learning/question-2").default;
 var prime_sum = require("./routes/prime-sum").default;
 var tally_expense = require("./routes/tally-expense").default;
 var imagesGPS = require("./routes/imagesGPS").default;
+var air_traffic = require("./routes/air-traffic").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
 
-const puzzleSolver = require('./routes/sorting-game/puzzle-solver')
+const puzzleSolver = require("./routes/sorting-game/puzzle-solver");
 
 const {
   minBroadcast,
   findMostConnected,
   findShortestPath
 } = require("./routes/broadcaster/functions");
-
 
 var app = express();
 
@@ -45,6 +45,7 @@ app.use("/tally-expense", tally_expense);
 app.use("/machine-learning/question-1", ml_q1);
 app.use("/machine-learning/question-2", ml_q2);
 app.use("/imagesGPS", imagesGPS);
+app.use("/airtrafficcontroller", air_traffic);
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
@@ -62,12 +63,11 @@ app.post("/broadcaster/fastest-path", function(req, res, next) {
   res.send({ result: findShortestPath(formData) });
 });
 
-
-app.post('/sorting-game',(req,res,next)=>{
-  const formData = req.body
-  console.log('sorting game')
-  res.send({result:puzzleSolver(formData)})
-})
+app.post("/sorting-game", (req, res, next) => {
+  const formData = req.body;
+  console.log("sorting game");
+  res.send({ result: puzzleSolver(formData) });
+});
 
 // catch 404 and forward to error handler`
 app.use(function(req, res, next) {
