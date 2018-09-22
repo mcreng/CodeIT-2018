@@ -1,9 +1,9 @@
 import json
 import sys
 
-input = sys.argv[1]
+n = sys.argv[1]
 
-dict_input = json.loads(input)
+dict_input = json.loads(n)
 
 persons = dict_input["persons"]
 n_total = len(persons)
