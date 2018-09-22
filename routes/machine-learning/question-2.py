@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import json
 
-question = np.array(json.loads(sys.argv[1])) / 256
+question = np.array(json.loads(sys.argv[1])) / 255
 
 from TwoLayerNet import TwoLayerNet
 local_net = TwoLayerNet(28*28, 256, 10)
