@@ -36,12 +36,12 @@ var downloadAll = async function(input) {
     var file = input[i]["path"];
     const content = await download(file, "./tmp.jpg");
     const [error, exifData] = await exitLoad({ image: "./tmp.jpg" });
-    console.log({ error, exifData });
+    // console.log({ error, exifData });
     if (error) console.log("Error: " + error.message);
     else {
-      console.log(exifData.gps); // Do something with your data!
-      console.log(exifData.gps.GPSLatitude);
-      console.log(exifData.gps.GPSLongitude);
+      // console.log(exifData.gps); // Do something with your data!
+      // console.log(exifData.gps.GPSLatitude);
+      // console.log(exifData.gps.GPSLongitude);
       var lat = toDecimal(exifData.gps.GPSLatitude); //gps["GPSLatitude"][0];
       var lon = toDecimal(exifData.gps.GPSLongitude); //gps["GPSLongitude"][0];
       // var lat_ = EXIF.getTag(data,'GPSLatitude')
@@ -51,7 +51,6 @@ var downloadAll = async function(input) {
       console.log(output);
     }
   }
-  console.log("gg");
   return output;
 };
 
@@ -64,14 +63,12 @@ router.post(
   asyncMiddleware(async function(req, res, next) {
     var input = req.body;
     var output = [];
-    console.log({ input });
+    console.log(input);
     try {
       output = await downloadAll(input);
     } catch (e) {
       console.log(e);
     }
-
-    console.log("hi");
 
     res.send(output);
   })
