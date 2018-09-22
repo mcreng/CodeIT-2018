@@ -10,7 +10,7 @@ router.post("/", function(req, res, next) {
     mode: "text",
     pythonPath: "python",
     pythonOptions: ["-u"],
-    scriptPath: "./routes/tally-expense/",
+    scriptPath: "./routes/",
     args: [input]
   }; // get print results in real-time
 
