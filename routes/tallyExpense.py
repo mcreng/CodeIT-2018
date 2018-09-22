@@ -32,7 +32,7 @@ for tran in trans:
 
 bills = balance
 
-out_trans = {"transactions": []}
+out_trans = []
 
 
 while sorted(bills.items(), key=lambda x: x[1],reverse=True)[0][1]>0.001:
@@ -47,7 +47,7 @@ while sorted(bills.items(), key=lambda x: x[1],reverse=True)[0][1]>0.001:
         tmp_tran = {"from": sorted_bills[-1][0], "to": sorted_bills[0][0], "amount": round(abs(sorted_bills[0][1]),2)}
         bills[sorted_bills[-1][0]]=diff_highest_lowest
         bills[sorted_bills[0][0]]=0 
-    out_trans["transactions"].append(tmp_tran)
+    out_trans.append(tmp_tran)
 
 print(json.dumps(out_trans))
 sys.stdout.flush()
