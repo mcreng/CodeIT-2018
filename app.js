@@ -14,6 +14,7 @@ var tally_expense = require("./routes/tally-expense").default;
 var index = require("./routes/index");
 var users = require("./routes/users");
 const {minBroadcast, findMostConnected, findShortestPath} = require('./routes/broadcaster/functions')
+const puzzleSolver = require('./routes/sorting-game/puzzle-solver')
 
 var app = express();
 
@@ -53,6 +54,11 @@ app.post("/broadcaster/fastest-path", function(req, res, next) {
   res.send({result:findShortestPath(formData)})
 });
 
+app.post('/sorting-game',(req,res,next)=>{
+  const formData = req.body
+  console.log('sorting game')
+  res.send({result:puzzleSolver(formData)})
+})
 
 
 // catch 404 and forward to error handler`

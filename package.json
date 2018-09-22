@@ -18,10 +18,11 @@
     "firebase": "^5.5.1",
     "jade": "~1.11.0",
     "morgan": "^1.9.1",
-    "request": "^2.88.0",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
-    "serve-favicon": "~2.4.2"
+    "request": "^2.88.0",
+    "serve-favicon": "~2.4.2",
+    "sliding-puzzle-solver": "0.0.2"
   },
   "devDependencies": {
     "babel-register": "^6.26.0"
