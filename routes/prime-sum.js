@@ -11,14 +11,14 @@ router.post("/", function(req, res, next) {
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/",
-    args: [input]
+    args: [parseInt(input)]
   }; // get print results in real-time
 
   PythonShell.run("primeSum.py", options, function(err, results) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     console.log("results: %j", results);
-    res.send(results.split(' '));
+    res.send(results.split(" "));
   });
 });
 
