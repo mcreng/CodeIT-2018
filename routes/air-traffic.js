@@ -21,6 +21,16 @@ router.post("/", async function(req, res, next) {
   var flights = req.body["Flights"];
   var statics = req.body["Static"];
 
+  // loop through to see if any flights have distress signal
+  var distressed = [];
+  for (var i = 0; i < flights.length; i++) {
+    if (flights[i]["Distressed"]) {
+      var obj = flights.splice(i, 1)[0];
+      obj["Runway"] = statics["Runways"][0];
+      distressed.push(obj);
+    }
+  }
+
   flights.sort(function(a, b) {
     var keyA = a["Time"];
     var keyB = b["Time"];
@@ -65,7 +75,6 @@ router.post("/", async function(req, res, next) {
         min_s = "0".repeat(4 - min_s.length).concat(min_s);
         j = s.indexOf(min_s);
       }
-      console.log(j);
 
       flights[i]["Runway"] = runways[j];
 
@@ -88,7 +97,42 @@ router.post("/", async function(req, res, next) {
     }
   }
 
-  res.send({ Flights: flights });
+  for (var i = 0; i < distressed.length; i++) {
+    var prevTime = distressed[i]["Time"];
+    var runway = distressed[i]["Runway"];
+    var k = 0;
+    for (; k < flights.length; k++) {
+      if (
+        getTimeDiff(
+          addTime(flights[k]["Time"], statics["ReserveTime"]),
+          distressed[i]["Time"]
+        ) < 0
+      )
+        break;
+    }
+    flights.splice(k, 0, distressed[i]);
+    console.log(k);
+    k++;
+    for (; k < flights.length; k++) {
+      if (flights[k]["Runway"] == runway) {
+        var t = Math.max(
+          flights[k]["Time"],
+          addTime(prevTime, statics["ReserveTime"])
+        );
+        console.log(flights[k]["Time"]);
+        console.log(prevTime);
+        t = t.toString();
+        t = "0".repeat(4 - t.length).concat(t);
+        flights[k]["Time"] = t;
+
+        prevTime = flights[k]["Time"];
+      }
+    }
+  }
+
+  res.send({
+    Flights: flights
+  });
 });
 
 export default router;
