@@ -34,7 +34,7 @@ router.post("/", async function(req, res, next) {
   });
 
   if (statics["Runways"]) {
-    var runways = statics["Runways"];
+    var runways = statics["Runways"].sort();
     var runway_status = [];
     runways.forEach(() => runway_status.push("0000"));
     flights[0]["Runway"] = runways[0]; // choose first one
