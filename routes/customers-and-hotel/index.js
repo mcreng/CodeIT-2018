@@ -7,41 +7,41 @@ var router = Router();
 router.post("/minimum-camps", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  console.log(formData)
-  
+  console.log(formData);
+
   var options = {
     mode: "text",
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [formData]
+    args: [JSON.stringify(formData)]
   }; // get print results in real-time
 
   PythonShell.run("minimum-camps.py", options, function(err, results) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     console.log("results: %j", results);
-    res.send({ answer: results });
+    res.send({ answer: results[0] });
   });
 });
 router.post("/minimum-distance", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  console.log(formData)
-  
+  console.log(formData);
+
   var options = {
     mode: "text",
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [formData]
+    args: [JSON.stringify(formData)]
   }; // get print results in real-time
 
   PythonShell.run("minimum-distance.py", options, function(err, results) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     console.log("results: %j", results);
-    res.send({ answer: results });
+    res.send({ answer: results[0] });
   });
 });
 
