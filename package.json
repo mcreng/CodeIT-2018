@@ -23,12 +23,8 @@
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
     "request": "^2.88.0",
-<<<<<<< HEAD
     "serve-favicon": "~2.4.2",
     "sliding-puzzle-solver": "0.0.2"
-=======
-    "serve-favicon": "~2.4.2"
->>>>>>> 18d20acda9ff8a86801d6400ffb7cf5c91e7d549
   },
   "devDependencies": {
     "babel-register": "^6.26.0"
