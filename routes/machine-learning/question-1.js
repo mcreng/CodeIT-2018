@@ -25,6 +25,7 @@ router.post("/", function(req, res, next) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     console.log("results: %j", results);
+    res.send({ answer: results[0] });
     res.send(JSON.stringify(results[0]));
   });
 });
