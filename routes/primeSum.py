@@ -1,5 +1,5 @@
 import sys
-n = int(sys.argv[1])
+n = int(sys.argv[0])
 
 prime = [True for i in range(n+1)]
 for p in range(2, int(round(n**0.5))+1):
@@ -17,7 +17,7 @@ elif n%2:
                     print(j, k,(i*2-k))
                     exit(0)
 else:
-    for i in range(2,n):
+    for i in range(2, n):
         if (prime[i] and prime[n-i] and i != (n-i)):
             print(i,(n-i))
             break
