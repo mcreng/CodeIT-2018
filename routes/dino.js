@@ -20,6 +20,9 @@ function loop() {
         data[[i - 1, k]];
       data[[i, k]] = sum ? sum : 0;
     }
+    for (var k = -amax; k < amax; k++) {
+      delete data[[i - 1, k]];
+    }
   }
 }
 
