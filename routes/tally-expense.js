@@ -4,13 +4,13 @@ import axios from "axios";
 var router = Router();
 
 router.post("/", function(req, res, next) {
-  var input = req.body["input"];
+  var input = req.body;
 
   var options = {
     mode: "text",
     pythonPath: "python",
     pythonOptions: ["-u"],
-    scriptPath: "./routes/",
+    scriptPath: "./routes/tally-expense/",
     args: [input]
   }; // get print results in real-time
 

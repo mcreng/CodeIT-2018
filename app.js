@@ -14,11 +14,15 @@ var imagesGPS = require("./routes/imagesGPS").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
+
+const puzzleSolver = require('./routes/sorting-game/puzzle-solver')
+
 const {
   minBroadcast,
   findMostConnected,
   findShortestPath
 } = require("./routes/broadcaster/functions");
+
 
 var app = express();
 
@@ -57,6 +61,13 @@ app.post("/broadcaster/fastest-path", function(req, res, next) {
   const formData = req.body;
   res.send({ result: findShortestPath(formData) });
 });
+
+
+app.post('/sorting-game',(req,res,next)=>{
+  const formData = req.body
+  console.log('sorting game')
+  res.send({result:puzzleSolver(formData)})
+})
 
 // catch 404 and forward to error handler`
 app.use(function(req, res, next) {
