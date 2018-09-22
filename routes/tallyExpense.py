@@ -49,5 +49,5 @@ while sorted(bills.items(), key=lambda x: x[1],reverse=True)[0][1]>0.001:
         bills[sorted_bills[0][0]]=0 
     out_trans["transactions"].append(tmp_tran)
 
-print(out_trans)
+print(json.dumps(out_trans))
 sys.stdout.flush()
