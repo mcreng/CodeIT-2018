@@ -1,9 +1,9 @@
 import json
 import sys
 
-input = sys.argv[1]
+n = sys.argv[1]
 
-dict_input = json.loads(input)
+dict_input = json.loads(n)
 
 persons = dict_input["persons"]
 n_total = len(persons)
@@ -49,5 +49,5 @@ while sorted(bills.items(), key=lambda x: x[1],reverse=True)[0][1]>0.001:
         bills[sorted_bills[0][0]]=0 
     out_trans["transactions"].append(tmp_tran)
 
-print(json.dumps(out_trans))
+print(out_trans)
 sys.stdout.flush()
