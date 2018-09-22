@@ -8,7 +8,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
@@ -16,9 +15,12 @@
     "express": "^4.16.3",
     "jade": "~1.11.0",
     "morgan": "^1.9.1",
+    "numjs": "^0.16.0",
+    "python-shell": "^1.0.4",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-register": "^6.26.0"
   }
 }
