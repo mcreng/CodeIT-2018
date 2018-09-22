@@ -12,6 +12,7 @@ var prime_sum = require("./routes/prime-sum").default;
 var tally_expense = require("./routes/tally-expense").default;
 var imagesGPS = require("./routes/imagesGPS").default;
 var air_traffic = require("./routes/air-traffic").default;
+var cus_and_hotel = require("./routes/customers-and-hotel").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
@@ -46,6 +47,8 @@ app.use("/machine-learning/question-1", ml_q1);
 app.use("/machine-learning/question-2", ml_q2);
 app.use("/imagesGPS", imagesGPS);
 app.use("/airtrafficcontroller", air_traffic);
+app.use("/customers-and-hotel/index", cus_and_hotel);
+
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
