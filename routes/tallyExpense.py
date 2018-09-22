@@ -42,12 +42,12 @@ for i in range(n_total):
         tmp_tran = {"from": balance[i][0], "to": balance[neg_ptr][0], "amount": 0}
         if abs(balance[i][1]) >= abs(balance[neg_ptr][1]):
             balance[i][1] += abs(balance[neg_ptr][1])
-            tmp_tran["amount"] = abs(balance[neg_ptr][1])
+            tmp_tran["amount"] = round(abs(balance[neg_ptr][1]),2)
             balance[neg_ptr][1] = 0
             neg_ptr -= 1
         else:
             balance[neg_ptr][1] -= abs(balance[i][1])
-            tmp_tran["amount"] = abs(balance[i][1])
+            tmp_tran["amount"] = round(abs(balance[i][1]),2)
             balance[i][1] = 0
         out_trans['transactions'].append(tmp_tran)
 
