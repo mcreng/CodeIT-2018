@@ -1,8 +1,7 @@
 import json
 import sys
 
-n = sys.argv[0]
-print(n)
+n = sys.argv[1]
 
 dict_input = json.loads(n)
 
