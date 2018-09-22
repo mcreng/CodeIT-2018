@@ -17,6 +17,7 @@ function addTime(a, diff) {
 }
 
 router.post("/", async function(req, res, next) {
+  console.log(req.body);
   var flights = req.body["Flights"];
   var statics = req.body["Static"];
 
