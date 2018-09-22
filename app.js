@@ -14,6 +14,7 @@ var imagesGPS = require("./routes/imagesGPS").default;
 var skilltree = require("./routes/skills/skills");
 var air_traffic = require("./routes/air-traffic").default;
 var cus_and_hotel = require("./routes/customers-and-hotel");
+var dino = require("./routes/dino").default;
 
 var index = require("./routes/index");
 var users = require("./routes/users");
@@ -49,10 +50,11 @@ app.use("/machine-learning/question-2", ml_q2);
 app.use("/imagesGPS", imagesGPS);
 app.use("/airtrafficcontroller", air_traffic);
 app.use("/customers-and-hotel/index", cus_and_hotel);
+app.use("/two-dinosaurs", dino);
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
-  console.log('bc t1',formData)
+  console.log("bc t1", formData);
   const result = minBroadcast(formData);
   console.log("bc t1", { formData, result });
   res.send({ result });
@@ -60,7 +62,7 @@ app.post("/broadcaster/message-broadcast", function(req, res, next) {
 app.post("/broadcaster/most-connected-node", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  console.log('bc t2', formData)
+  console.log("bc t2", formData);
   const result = findMostConnected(formData);
   console.log("bc t2", { formData, result });
   res.send({ result });
@@ -68,7 +70,7 @@ app.post("/broadcaster/most-connected-node", function(req, res, next) {
 app.post("/broadcaster/fastest-path", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  console.log('bc t3', formData)
+  console.log("bc t3", formData);
   const result = findShortestPath(formData);
   console.log("bc t3", { formData, result });
   res.send({ result });
@@ -82,7 +84,7 @@ app.post("/sorting-game", (req, res, next) => {
 
 app.post("/skill-tree", (req, res, next) => {
   const formData = req.body;
-  console.log('skill-tree',formData)
+  console.log("skill-tree", formData);
   const result = skilltree(formData);
   console.log("skill tree", { formData, result });
   res.send(result);
