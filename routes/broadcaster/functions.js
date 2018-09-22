@@ -9,11 +9,11 @@ const minBroadcast = ({data}) => {
   initNodes(data)
   // console.log({children,parents,nodes})
   generateAncesterList()
-  // console.log(ancesters)
+  // console.log({ancesters})
   reduceAncesterList()
-  // console.log(ancesters)
+  // console.log({ancesters})
   let sendList = broadcastOut()
-  console.log(sendList)
+  // console.log(sendList)
   return sendList
 }
 
@@ -21,7 +21,7 @@ const findMostConnected = ({data}) => {
   initNodes(data)
   // console.log({children,parents,nodes})
   generateAncesterList()
-  // console.log(ancesters)
+  console.log(ancesters)
   reduceAncesterList()
   // console.log(ancesters)
   let mostConnected = mostConnectedOut()
@@ -108,7 +108,10 @@ const broadcastOut = () => {
   const marks = gradeNodes()
   const sendList = []
   let notSentNodes
-  while(notSentNodes = Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>marks[a]<marks[b])){
+  console.log(marks)
+  // console.log(Object.keys(nodes).filter(node=>(nodes[node])))
+  // console.log(Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{console.log(a,marks[a]); return marks[b] - marks[a]}))
+  while(notSentNodes = Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{return marks[b] - marks[a]})){
     if(notSentNodes.length === 0)break
     // console.log('push',notSentNodes[0])
     sendList.push(notSentNodes[0])
@@ -138,7 +141,8 @@ const sendNode = (node)=> {
 
 const mostConnectedOut = () => {
   const marks = gradeNodes()
-  return Object.keys(nodes).filter(node=>(nodes[node])).sort().sort((a,b)=>marks[a]<marks[b])[0]
+  console.log(marks)
+  return Object.keys(nodes).filter(node=>(nodes[node])).sort((a,b)=>{return marks[b] - marks[a]})[0]
 }
 
 module.exports = {

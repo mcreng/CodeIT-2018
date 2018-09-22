@@ -5,6 +5,7 @@ let nodes = {};
 let paths;
 let availables;
 let target;
+let bestPath
 
 const allOpenNodes = trace =>
   trace.reduce((prev, currv) => [...prev, ...children[currv]], []);
@@ -12,7 +13,18 @@ const allOpenNodes = trace =>
 const dfs = (trace, offense, points) => {
   if (offense >= target) {
     // console.log({trace,offense,points});
-    paths.queue({path:trace,offense,points});
+    if(bestPath){
+      if(bestPath.points > points){
+        bestPath = {path:trace,offense,points}
+        return
+      } else {
+        return
+      }
+    } else {
+      bestPath = {path:trace,offense,points}
+      return
+    }
+    // paths.queue({path:trace,offense,points});
     return;
   } else {
     const opens = allOpenNodes(trace);
@@ -36,6 +48,7 @@ const dfs = (trace, offense, points) => {
 const solve = data => {
   parents = { __beep: [] };
   children = { __beep: [] };
+  bestPath = null
   nodes = {
     __beep: {
       name: "__beep",
@@ -48,7 +61,8 @@ const solve = data => {
   target = data.boss.offense;
   initNodes(data.skills);
   dfs(["__beep"], 0, 0);
-  return paths.peek().path.splice(1);
+  return bestPath.path.splice(1)
+  // return paths.peek().path.splice(1);
 };
 
 const initNodes = skills => {
