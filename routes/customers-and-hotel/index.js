@@ -13,7 +13,7 @@ router.post("/minimum-camps", function(req, res, next) {
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [formData]
+    args: [JSON.stringify(formData)]
   }; // get print results in real-time
 
   PythonShell.run("minimum-camps.py", options, function(err, results) {
@@ -32,7 +32,7 @@ router.post("/minimum-distance", function(req, res, next) {
     pythonPath: "python",
     pythonOptions: ["-u"],
     scriptPath: "./routes/customers-and-hotel/",
-    args: [formData]
+    args: [JSON.stringify(formData)]
   }; // get print results in real-time
 
   PythonShell.run("minimum-distance.py", options, function(err, results) {
