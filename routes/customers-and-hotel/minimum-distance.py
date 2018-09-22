@@ -1,7 +1,7 @@
 import sys
 import json
 
-n = json.loads(sys.argv[1])
+n = sys.argv[1]
 
 # input = [{"pos":4,"distance":3},{"pos":7, "distance":1}, { "pos":5,"distance":1}, { "pos":1, "distance":1}]
 
