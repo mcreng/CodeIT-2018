@@ -49,7 +49,7 @@ app.use("/machine-learning/question-1", ml_q1);
 app.use("/machine-learning/question-2", ml_q2);
 app.use("/imagesGPS", imagesGPS);
 app.use("/airtrafficcontroller", air_traffic);
-app.use("/customers-and-hotel/index", cus_and_hotel);
+app.use("/customers-and-hotel/", cus_and_hotel);
 app.use("/two-dinosaurs", dino);
 
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
