@@ -9,7 +9,7 @@ for p in range(2, int(round(n**0.5))+1):
 
 if prime[n]: print(n)
 elif n%2:
-    for i in range(1, n//2+1):
+    for i in range(2, n):
         j = n - 2*i
         if (prime[i] and prime[j]): 
             for k in range(2,i*2):
@@ -17,7 +17,7 @@ elif n%2:
                     print(j, k,(i*2-k))
                     exit(0)
 else:
-    for i in range(2,n//2+1):
+    for i in range(2, n):
         if (prime[i] and prime[n-i] and i != (n-i)):
             print(i,(n-i))
             break
