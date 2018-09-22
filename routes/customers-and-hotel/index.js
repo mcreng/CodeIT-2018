@@ -43,4 +43,5 @@ router.post("/minimum-distance", function(req, res, next) {
   });
 });
 
-export default router;
+// export default router;
+module.exports = router;

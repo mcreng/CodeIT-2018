@@ -11,9 +11,9 @@ var ml_q2 = require("./routes/machine-learning/question-2").default;
 var prime_sum = require("./routes/prime-sum").default;
 var tally_expense = require("./routes/tally-expense").default;
 var imagesGPS = require("./routes/imagesGPS").default;
-var skilltree = require('./routes/skills/skills')
+var skilltree = require("./routes/skills/skills");
 var air_traffic = require("./routes/air-traffic").default;
-var cus_and_hotel = require("./routes/customers-and-hotel").default;
+var cus_and_hotel = require("./routes/customers-and-hotel");
 
 var index = require("./routes/index");
 var users = require("./routes/users");
@@ -50,26 +50,25 @@ app.use("/imagesGPS", imagesGPS);
 app.use("/airtrafficcontroller", air_traffic);
 app.use("/customers-and-hotel/index", cus_and_hotel);
 
-
 app.post("/broadcaster/message-broadcast", function(req, res, next) {
   const formData = req.body;
-  const result = minBroadcast(formData)
+  const result = minBroadcast(formData);
   res.send({ result });
-  console.log("bc t1", {formData,result});
+  console.log("bc t1", { formData, result });
 });
 app.post("/broadcaster/most-connected-node", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  const result = findMostConnected(formData)
+  const result = findMostConnected(formData);
   res.send({ result });
-  console.log("bc t2", {formData,result});
+  console.log("bc t2", { formData, result });
 });
 app.post("/broadcaster/fastest-path", function(req, res, next) {
   // console.log()
   const formData = req.body;
-  const result = findShortestPath(formData)
+  const result = findShortestPath(formData);
   res.send({ result });
-  console.log("bc t3", {formData,result});
+  console.log("bc t3", { formData, result });
 });
 
 app.post("/sorting-game", (req, res, next) => {
@@ -78,12 +77,12 @@ app.post("/sorting-game", (req, res, next) => {
   res.send({ result: puzzleSolver(formData) });
 });
 
-app.post('/skill-tree',(req,res,next)=>{
-  const formData = req.body
-  const result = skilltree(formData)
-  console.log('skill tree',{formData, result})
-  res.send(result)
-})
+app.post("/skill-tree", (req, res, next) => {
+  const formData = req.body;
+  const result = skilltree(formData);
+  console.log("skill tree", { formData, result });
+  res.send(result);
+});
 
 // catch 404 and forward to error handler`
 app.use(function(req, res, next) {
