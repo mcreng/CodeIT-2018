@@ -3,20 +3,15 @@ import json
 
 n = json.loads(sys.argv[1])
 
-# input = [{"pos":4,"distance":3},{"pos":7, "distance":1}, { "pos":5,"distance":1}, { "pos":1, "distance":1}]
+#input = [4, 7, 5, 1, 12, 13, 9, 2, 6, 3, 21]
 
-ranges = []
-for i in n:
-    ranges.append((i["pos"]-i["distance"], i["pos"]+i["distance"]))
 
-ranges.sort(key=lambda p:p[1])
+n.sort()
 
-cnt = 0
-last = None
-for r in ranges:
-    if last == None or last < r[0]:
-        last = r[1]
-        cnt += 1
+min = max(n)
+for i in range(0,len(n)-1):
+    if (n[i+1] - n[i]) < min: 
+        min = (n[i+1] - n[i])
 
-print(cnt)
+print(min)
 sys.stdout.flush()
