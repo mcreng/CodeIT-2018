@@ -27,6 +27,7 @@ const semiBestBfs = () => {
         if(bestPath && newNode.points+path.points > bestPath.points){
           return
         }else{
+          if(path.trace.indexOf(newNode)!==-1)return
           const skill = nodes[newNode]
           if(skill.offense<1)return
           const newOffense = skill.offense+path.offense
