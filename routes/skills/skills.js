@@ -32,10 +32,10 @@ const semiBestBfs = () => {
           if(skill.offense<1)return
           const newOffense = skill.offense+path.offense
           const newPoints = skill.points+path.points
-          if(!bestScoreAttempt[newOffense] || bestScoreAttempt[newOffense]>newPoints){
+          // if(!bestScoreAttempt[newOffense] || bestScoreAttempt[newOffense]>newPoints){
             bestScoreAttempt[newOffense] = newPoints
             paths.queue({trace:[...path.trace,newNode],points:path.points+skill.points,offense:path.offense+skill.offense})
-          }
+          // }
         }
       })
     }

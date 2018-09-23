@@ -20,6 +20,7 @@ var index = require("./routes/index");
 var users = require("./routes/users");
 
 const puzzleSolver = require("./routes/sorting-game/puzzle-solver");
+const GameManager = require('./routes/tetris/game_manager')
 
 const {
   minBroadcast,
@@ -88,6 +89,14 @@ app.post("/skill-tree", (req, res, next) => {
   const result = skilltree(formData);
   console.log("skill tree", { formData, result });
   res.send(result);
+});
+
+app.post("/tetris", (req, res, next) => {
+  const formData = req.body;
+  console.log("tetris form", formData);
+  const actions = GameManager(formData);
+  console.log("tetris result", actions);
+  res.send({actions});
 });
 
 // catch 404 and forward to error handler`
