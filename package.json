@@ -22,11 +22,13 @@
     "jade": "~1.11.0",
     "jpeg-exif": "^1.1.2",
     "js-priority-queue": "^0.1.5",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "morgan": "^1.9.1",
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
     "request": "^2.88.0",
+    "sanic.js": "^0.1.1",
     "serve-favicon": "~2.4.2",
     "sliding-puzzle-solver": "0.0.2"
   },
