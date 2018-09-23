@@ -25,12 +25,15 @@ var B = null;
 
 function new_loop() {
   var new_nonzero = [0];
+  var new_nonzero = new Set();
+  new_nonzero.add(0);
+
   for (var i = 1; i <= n; i++) {
     var prevData = data;
     data = {};
     var nonzero = new_nonzero,
-      new_nonzero = [];
-    nonzero = _.uniq(nonzero);
+      new_nonzero = new Set();
+    // nonzero = _.uniq(nonzero);
     // elapsed_time([i, nonzero.length]);
 
     for (var kk of nonzero) {
@@ -51,7 +54,7 @@ function new_loop() {
           (sum3 ? sum3 : 0) +
           (sum4 ? sum4 : 0);
         data[k] = sum ? sum : 0;
-        if (data[k] !== 0) new_nonzero.push(k);
+        if (data[k] !== 0) new_nonzero.add(k);
       }
     }
   }
