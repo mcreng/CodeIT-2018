@@ -47,10 +47,28 @@ function GameManager({tetrominoSequence:sequence}) {
       output.push("" + data.rotation + col);
       while (workingPiece.moveDown(grid)); // Drop working piece
       // console.log(workingPieces.length)
-      grid.addPiece(workingPiece)
+      if(!endTurn()){
+        break
+      }
   }
     // Shift working pieces
     return output
+    // Process end of turn
+    function endTurn(){
+      // Add working piece
+      grid.addPiece(workingPiece);
+    
+      // Clear lines
+      score += grid.clearLines();
+    
+      // Refresh graphics
+      // redrawGridCanvas();
+      // updateScoreContainer();
+    
+      return !grid.exceeded();
+    }
 }
+
+
 
 module.exports = GameManager

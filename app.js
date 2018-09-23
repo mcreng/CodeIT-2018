@@ -95,7 +95,7 @@ app.post("/tetris", (req, res, next) => {
   const formData = req.body;
   console.log("tetris form", formData);
   const actions = GameManager(formData);
-  console.log("tetris result", actions);
+  console.log("tetris result", actions,actions.length,formData.tetrominoSequence.length);
   res.send({actions});
 });
 
