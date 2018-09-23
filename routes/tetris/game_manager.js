@@ -29,7 +29,7 @@ function GameManager({tetrominoSequence:sequence}) {
   var score = 0;
   const output = []
   var kill = false
-  setTimeout(()=>kill=true,10000)
+  setTimeout(()=>kill=true,5000)
 
   // Process start of turn
   var newPiece
