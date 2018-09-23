@@ -28,6 +28,8 @@ function GameManager({tetrominoSequence:sequence}) {
   var workingPiece = null;
   var score = 0;
   const output = []
+  var kill = false
+  setTimeout(()=>kill=true,18000)
 
   // Process start of turn
   var newPiece
@@ -47,7 +49,9 @@ function GameManager({tetrominoSequence:sequence}) {
       output.push("" + data.rotation + col);
       while (workingPiece.moveDown(grid)); // Drop working piece
       // console.log(workingPieces.length)
-      if(!endTurn()){
+      if(!endTurn()||kill){
+        console.log('die')
+        while(output.length < sequence.length)output.push('00')
         break
       }
   }
