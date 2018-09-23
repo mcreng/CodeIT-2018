@@ -6,7 +6,7 @@ var router = Router();
 
 router.post("/", function(req, res, next) {
   var input = req.body;
-  console.log(input)
+  console.log(util.inspect(input,false,null,true ))
 
   var options = {
     mode: "text",
