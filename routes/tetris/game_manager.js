@@ -29,7 +29,7 @@ function GameManager({tetrominoSequence:sequence}) {
   var score = 0;
   const output = []
   var kill = false
-  setTimeout(()=>kill=true,18000)
+  setTimeout(()=>kill=true,10000)
 
   // Process start of turn
   var newPiece
@@ -46,12 +46,12 @@ function GameManager({tetrominoSequence:sequence}) {
       // console.log('working column',workingPiece.column=data.column)
       const col = getRightShift(workingPiece);
       // console.log("best piece", workingPiece, data.rotation, col);
-      output.push("" + data.rotation + col);
+      output.push(Number("" + data.rotation + col));
       while (workingPiece.moveDown(grid)); // Drop working piece
       // console.log(workingPieces.length)
       if(!endTurn()||kill){
         console.log('die')
-        while(output.length < sequence.length)output.push('00')
+        while(output.length < sequence.length)output.push(0)
         break
       }
   }
