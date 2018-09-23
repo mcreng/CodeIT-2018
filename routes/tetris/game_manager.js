@@ -31,19 +31,23 @@ function GameManager({tetrominoSequence:sequence}) {
 
   // Process start of turn
   var newPiece
-  while(newPiece = rpg.nextPiece()){
+  while(true ){
       for (var i = 0; i < workingPieces.length - 1; i++) {
         workingPieces[i] = workingPieces[i + 1];
       }
-      workingPieces[workingPieces.length - 1] = newPiece;
+      workingPieces[workingPieces.length - 1] = newPiece = rpg.nextPiece();
+      if(!newPiece)break
       workingPiece = workingPieces[0];
     
       let data = ai.best(grid, workingPieces);
       workingPiece = data.piece;
+      // console.log('working column',workingPiece.column=data.column)
       const col = getRightShift(workingPiece);
       // console.log("best piece", workingPiece, data.rotation, col);
       output.push("" + data.rotation + col);
       while (workingPiece.moveDown(grid)); // Drop working piece
+      // console.log(workingPieces.length)
+      grid.addPiece(workingPiece)
   }
     // Shift working pieces
     return output
