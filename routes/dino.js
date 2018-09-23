@@ -1,10 +1,27 @@
 import { Router } from "express";
+import _ from "lodash";
 var router = Router();
 
 var data = {};
 var n = 0;
 var A = null;
 var B = null;
+
+// var elapsed_time = function(note) {
+//   var precision = 3; // 3 decimal places
+//   var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
+//   console.log(
+//     process.hrtime(start)[0] +
+//       " s, " +
+//       elapsed.toFixed(precision) +
+//       " ms - " +
+//       note
+//   ); // print message + time
+//   start = process.hrtime(); // reset the timer
+// };
+
+var start = process.hrtime();
+
 function loop() {
   data[[0, 0]] = 1;
 
@@ -12,7 +29,7 @@ function loop() {
   for (var i = 1; i <= n; i++) {
     var nonzero = new_nonzero,
       new_nonzero = [];
-
+    nonzero = _.uniq(nonzero);
     nonzero.forEach(kk => {
       var kl = [kk, kk + A[i - 1], kk - B[i - 1], kk + A[i - 1] - B[i - 1]];
       kl.forEach(k => {
@@ -52,6 +69,7 @@ router.post("/", function(req, res, next) {
     k = JSON.parse("[" + k + "]");
     if (Math.abs(k[1]) <= delta) {
       counter += data[k];
+      counter %= 100000123;
     }
   });
 
