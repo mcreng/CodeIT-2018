@@ -2,32 +2,30 @@ import json
 import sys
 
 #n = sys.argv[1]
-#input = sys.argv[1]
 
-dict_input = json.loads(sys.argv[1])
+n = json.loads(sys.argv[1])#n)
 
-persons = dict_input["persons"]
+persons = n["persons"]
 n_total = len(persons)
+
 balance = {}
-for person in persons:
-    balance[person] = 0
+for p in persons:
+    balance[p] = 0
 
-trans = dict_input['expenses']
+trans = n["expenses"]
+
 for tran in trans:
-    paidBy = tran["paidBy"]
-    amount = tran["amount"]
-    
-    exclude_persons = [paidBy]
+    paidBy = tran['paidBy']
+    amount = tran['amount']
     if "exclude" in tran:
-        exclude = tran["exclude"]
-        n_div = n_total - len(exclude)
-        acc = amount / n_div
-        exclude_persons += exclude
-    else: acc = amount / n_total
-    
-    split_persons = [p for p in persons if p not in exclude_persons]
+        exclude_list = tran['exclude']
+        exclude_list.append(paidBy)
+    else: exclude_list = [paidBy]
+    share_list = [p for p in persons if p not in exclude_list]
 
-    for p in split_persons:
+    acc = amount/(n_total-len(exclude_list)+1)
+
+    for p in share_list:
         balance[p] -= acc
 
     balance[paidBy] += amount - acc
