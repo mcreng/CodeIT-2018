@@ -1,9 +1,7 @@
 import json
 import sys
 
-n = sys.argv[1]
-
-dict_input = json.loads(n)
+dict_input = json.loads(sys.argv[1])
 
 persons = dict_input["persons"]
 n_total = len(persons)
@@ -30,7 +28,7 @@ for tran in trans:
 
     balance[paidBy] += amount - acc
 
-out_trans = []
+out_trans = {"transactions": []}
 
 neg_ptr = n_total-1
 for i in range(n_total):
@@ -47,7 +45,7 @@ for i in range(n_total):
             balance[neg_ptr][1] -= abs(balance[i][1])
             tmp_tran["amount"] = round(abs(balance[i][1]),2)
             balance[i][1] = 0
-        out_trans.append(tmp_tran)
+        out_trans["transaction"].append(tmp_tran)
 
 print(json.dumps(out_trans))
 sys.stdout.flush()
