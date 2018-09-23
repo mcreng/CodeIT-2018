@@ -1,5 +1,7 @@
 import json
 import sys
+
+#n = sys.argv[1]
 #input = sys.argv[1]
 
 dict_input = json.loads(sys.argv[1])
@@ -44,11 +46,16 @@ for i in range(n_total):
             tmp_tran = {"from": balance[i][0], "to": balance[neg_ptr][0], "amount": round(abs(balance[neg_ptr][1]),2)}
             balance[neg_ptr][1] = 0
             neg_ptr -= 1
+            if (neg_ptr == i):
+                break
+            
         else:
             balance[neg_ptr][1] -= abs(balance[i][1])
             tmp_tran = {"from": balance[i][0], "to": balance[neg_ptr][0], "amount": round(abs(balance[i][1]),2)}
             balance[i][1] = 0
         out_trans["transactions"].append(tmp_tran)
+    if (neg_ptr == i):
+        break
 
 print(json.dumps(out_trans))
 sys.stdout.flush()
