@@ -28,6 +28,7 @@
     "numjs": "^0.16.0",
     "python-shell": "^1.0.4",
     "request": "^2.88.0",
+    "sanic.js": "^0.1.1",
     "serve-favicon": "~2.4.2",
     "sliding-puzzle-solver": "0.0.2"
   },

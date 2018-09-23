@@ -1,5 +1,6 @@
 import { Router } from "express";
 import _ from "lodash";
+require("sanic.js").changeMyWorld();
 var router = Router();
 
 var data = {};
@@ -7,20 +8,20 @@ var n = 0;
 var A = null;
 var B = null;
 
-var elapsed_time = function(note) {
-  var precision = 3; // 3 decimal places
-  var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
-  console.log(
-    process.hrtime(start)[0] +
-      " s, " +
-      elapsed.toFixed(precision) +
-      " ms - " +
-      note
-  ); // print message + time
-  start = process.hrtime(); // reset the timer
-};
+// var elapsed_time = function(note) {
+//   var precision = 3; // 3 decimal places
+//   var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
+//   console.log(
+//     process.hrtime(start)[0] +
+//       " s, " +
+//       elapsed.toFixed(precision) +
+//       " ms - " +
+//       note
+//   ); // print message + time
+//   start = process.hrtime(); // reset the timer
+// };
 
-var start = process.hrtime();
+// var start = process.hrtime();
 
 function new_loop() {
   var new_nonzero = [0];
@@ -30,7 +31,7 @@ function new_loop() {
     var nonzero = new_nonzero,
       new_nonzero = [];
     nonzero = _.uniq(nonzero);
-    elapsed_time([i, nonzero.length]);
+    // elapsed_time([i, nonzero.length]);
 
     for (var kk of nonzero) {
       for (var k of [
@@ -58,7 +59,7 @@ function new_loop() {
 
 router.post("/", function(req, res, next) {
   data = { 0: 1 };
-  console.log(req.body);
+  // console.log(req.body);
   n = req.body["number_of_types_of_food"];
   A = req.body["calories_for_each_type_for_raphael"];
   B = req.body["calories_for_each_type_for_leonardo"];
